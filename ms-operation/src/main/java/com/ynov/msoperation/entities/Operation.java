@@ -24,5 +24,7 @@ public class Operation implements Serializable {
 	private String type;
 	private Float amount;
 	private Long accountId;
+	private Long sourceAccountId;
+	private Long destinationAccountId;
 	private Long clientId;
 }

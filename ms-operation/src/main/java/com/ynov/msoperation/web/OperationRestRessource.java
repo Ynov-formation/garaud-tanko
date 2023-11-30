@@ -2,7 +2,11 @@ package com.ynov.msoperation.web;
 
 import com.ynov.msoperation.dao.OperationRepository;
 import com.ynov.msoperation.entities.Operation;
+import com.ynov.msoperation.response.DepositResponse;
+import com.ynov.msoperation.response.TransferResponse;
+import com.ynov.msoperation.response.WithdrawResponse;
 import com.ynov.msoperation.service.OperationService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +16,7 @@ import java.util.List;
 public class OperationRestRessource {
 
 	private final OperationRepository operationRepository;
+
 	private final OperationService operationService;
 
 	public OperationRestRessource(OperationRepository operationRepository, OperationService operationService) {
@@ -30,13 +35,33 @@ public class OperationRestRessource {
 	}
 
 	@PostMapping("/deposit")
-	public Operation deposit(@RequestBody Operation operation) {
-		Operation op = Operation.builder()
-				.withType("deposit")
-				.withAccountId(operation.getAccountId())
-				.withClientId(operation.getClientId())
-				.withAmount(operation.getAmount())
-				.build();
-		return operationRepository.save(op);
+	public ResponseEntity<DepositResponse> deposit(@RequestBody Operation operation) {
+		return ResponseEntity.ok(
+				operationService.deposit(
+						operation.getAccountId(),
+						operation.getAmount()
+				)
+		);
+	}
+
+	@PostMapping("/withdraw")
+	public ResponseEntity<WithdrawResponse> withdraw(@RequestBody Operation operation) {
+		return ResponseEntity.ok(
+				operationService.withdraw(
+						operation.getAccountId(),
+						operation.getAmount()
+				)
+		);
+	}
+
+	@PostMapping("/transfer")
+	public ResponseEntity<TransferResponse> transfer(@RequestBody Operation operation) {
+		return ResponseEntity.ok(
+				operationService.transfer(
+						operation.getSourceAccountId(),
+						operation.getAmount(),
+						operation.getDestinationAccountId()
+				)
+		);
 	}
 }
