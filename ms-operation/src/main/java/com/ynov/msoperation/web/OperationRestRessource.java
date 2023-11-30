@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/operation/v1")
@@ -30,38 +31,40 @@ public class OperationRestRessource {
 	}
 
 	@GetMapping("/operations/{id}")
-	public Operation getOperation(@PathVariable(name = "id") Long id) {
-		return operationRepository.findById(id).orElse(null);
+	public ResponseEntity<Operation> getOperation(@PathVariable(name = "id") Long id) {
+		Optional<Operation> operation = operationRepository.findById(id);
+
+		return operation.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
 	}
 
 	@PostMapping("/deposit")
 	public ResponseEntity<DepositResponse> deposit(@RequestBody Operation operation) {
-		return ResponseEntity.ok(
-				operationService.deposit(
-						operation.getAccountId(),
-						operation.getAmount()
-				)
+		DepositResponse deposit = operationService.deposit(
+				operation.getAccountId(),
+				operation.getAmount()
 		);
+
+		return deposit != null ? ResponseEntity.ok(deposit) : ResponseEntity.badRequest().build();
 	}
 
 	@PostMapping("/withdraw")
 	public ResponseEntity<WithdrawResponse> withdraw(@RequestBody Operation operation) {
-		return ResponseEntity.ok(
-				operationService.withdraw(
-						operation.getAccountId(),
-						operation.getAmount()
-				)
+		WithdrawResponse withdraw = operationService.withdraw(
+				operation.getAccountId(),
+				operation.getAmount()
 		);
+
+		return withdraw != null ? ResponseEntity.ok(withdraw) : ResponseEntity.badRequest().build();
 	}
 
 	@PostMapping("/transfer")
 	public ResponseEntity<TransferResponse> transfer(@RequestBody Operation operation) {
-		return ResponseEntity.ok(
-				operationService.transfer(
-						operation.getSourceAccountId(),
-						operation.getAmount(),
-						operation.getDestinationAccountId()
-				)
+		TransferResponse transfer = operationService.transfer(
+				operation.getSourceAccountId(),
+				operation.getAmount(),
+				operation.getDestinationAccountId()
 		);
+
+		return transfer != null ? ResponseEntity.ok(transfer) : ResponseEntity.badRequest().build();
 	}
 }

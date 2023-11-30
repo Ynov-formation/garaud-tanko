@@ -12,9 +12,6 @@
 				{
 					"name": "All clients",
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -42,6 +39,25 @@
 							"path": [
 								"clients",
 								"63"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "One client's accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URI_CLIENT\n}}/clients/253/accounts",
+							"host": [
+								"{{URI_CLIENT\n}}"
+							],
+							"path": [
+								"clients",
+								"253",
+								"accounts"
 							]
 						}
 					},
@@ -88,13 +104,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{URI_CLIENT\n}}/clients/1",
+							"raw": "{{URI_CLIENT\n}}/clients/62",
 							"host": [
 								"{{URI_CLIENT\n}}"
 							],
 							"path": [
 								"clients",
-								"1"
+								"62"
 							]
 						}
 					},
@@ -161,9 +177,6 @@
 				{
 					"name": "All accounts",
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -314,7 +327,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"amount\": \"100\",\r\n    \"accountId\": \"6\"\r\n}",
+							"raw": "{\r\n    \"amount\": \"10000\",\r\n    \"accountId\": \"6\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -340,7 +353,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"amount\": \"100\",\r\n    \"accountId\": \"6\"\r\n}",
+							"raw": "{\r\n    \"amount\": \"20000\",\r\n    \"accountId\": \"6\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -366,7 +379,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"clientId\" : 102,\r\n    \"sourceAccountId\" : 6,\r\n    \"destinationAccountId\" : 52,\r\n    \"amount\" : 20000\r\n}",
+							"raw": "{\r\n    \"clientId\" : 207,\r\n    \"sourceAccountId\" : 6,\r\n    \"destinationAccountId\" : 52,\r\n    \"amount\" : 200\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
