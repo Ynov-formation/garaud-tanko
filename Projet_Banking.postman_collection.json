@@ -1,0 +1,391 @@
+{
+	"info": {
+		"_postman_id": "75836b3a-9c16-49f8-a506-4ab30c25d7ff",
+		"name": "Projet Banking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25416767"
+	},
+	"item": [
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "All clients",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URI_CLIENT\n}}/clients",
+							"host": [
+								"{{URI_CLIENT\n}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "One client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URI_CLIENT\n}}/clients/63",
+							"host": [
+								"{{URI_CLIENT\n}}"
+							],
+							"path": [
+								"clients",
+								"63"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clients",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"firstName\":\"John\",\r\n        \"lastName\":\"Doe\",\r\n        \"email\":\"john.doe@gmail.com\",\r\n        \"birthDate\":\"2000-01-01\"\r\n    },\r\n    {\r\n        \"firstName\":\"Michael\",\r\n        \"lastName\":\"Doe\",\r\n        \"email\":\"michael.doe@gmail.com\",\r\n        \"birthDate\":\"2002-02-02\"\r\n    },\r\n    {\r\n        \"firstName\":\"Benett\",\r\n        \"lastName\":\"Doe\",\r\n        \"email\":\"benett.doe@gmail.com\",\r\n        \"birthDate\":\"2003-03-03\"\r\n    },\r\n    {\r\n        \"firstName\":\"Ervin\",\r\n        \"lastName\":\"Doe\",\r\n        \"email\":\"ervin.doe@gmail.com\",\r\n        \"birthDate\":\"2004-04-04\"\r\n    },\r\n    {\r\n        \"firstName\":\"Steve\",\r\n        \"lastName\":\"Doe\",\r\n        \"email\":\"steve.doe@gmail.com\",\r\n        \"birthDate\":\"2005-05-05\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI_CLIENT\n}}/clients",
+							"host": [
+								"{{URI_CLIENT\n}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Client",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Michael\",\r\n    \"lastName\":\"Doe\",\r\n    \"email\":\"michael.doe@gmail.com\",\r\n    \"birthDate\":\"2000-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI_CLIENT\n}}/clients/1",
+							"host": [
+								"{{URI_CLIENT\n}}"
+							],
+							"path": [
+								"clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Client",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Michael\",\r\n    \"lastName\":\"Doe\",\r\n    \"email\":\"michael.doe@gmail.com\",\r\n    \"birthDate\":\"2000-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI_CLIENT\n}}/clients/1",
+							"host": [
+								"{{URI_CLIENT\n}}"
+							],
+							"path": [
+								"clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All clients",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Michael\",\r\n    \"lastName\":\"Doe\",\r\n    \"email\":\"michael.doe@gmail.com\",\r\n    \"birthDate\":\"2000-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI_CLIENT\n}}/clients",
+							"host": [
+								"{{URI_CLIENT\n}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "All accounts",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URI_ACCOUNT}}/accounts",
+							"host": [
+								"{{URI_ACCOUNT}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "One account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URI_ACCOUNT}}/accounts/1",
+							"host": [
+								"{{URI_ACCOUNT}}"
+							],
+							"path": [
+								"accounts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accounts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"balance\":\"1000\",\r\n        \"clientId\":\"102\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI_ACCOUNT}}/accounts",
+							"host": [
+								"{{URI_ACCOUNT}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Account",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"balance\":\"2000\",\r\n    \"clientId\":\"102\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI_ACCOUNT}}/accounts/1",
+							"host": [
+								"{{URI_ACCOUNT}}"
+							],
+							"path": [
+								"accounts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Account",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Michael\",\r\n    \"lastName\":\"Doe\",\r\n    \"email\":\"michael.doe@gmail.com\",\r\n    \"birthDate\":\"2000-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI_ACCOUNT}}/accounts/1",
+							"host": [
+								"{{URI_ACCOUNT}}"
+							],
+							"path": [
+								"accounts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All accounts",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Michael\",\r\n    \"lastName\":\"Doe\",\r\n    \"email\":\"michael.doe@gmail.com\",\r\n    \"birthDate\":\"2000-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI_ACCOUNT}}/accounts",
+							"host": [
+								"{{URI_ACCOUNT}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Operation",
+			"item": [
+				{
+					"name": "Deposit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": \"100\",\r\n    \"accountId\": \"6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI_OPERATION}}/deposit",
+							"host": [
+								"{{URI_OPERATION}}"
+							],
+							"path": [
+								"deposit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Withdraw",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": \"100\",\r\n    \"accountId\": \"6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI_OPERATION}}/withdraw",
+							"host": [
+								"{{URI_OPERATION}}"
+							],
+							"path": [
+								"withdraw"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transfer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientId\" : 102,\r\n    \"sourceAccountId\" : 6,\r\n    \"destinationAccountId\" : 52,\r\n    \"amount\" : 20000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI_OPERATION}}/transfer",
+							"host": [
+								"{{URI_OPERATION}}"
+							],
+							"path": [
+								"transfer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
