@@ -28,10 +28,12 @@ public class SecurityConfig {
 	private final AccountService accountService;
 
 	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		return httpSecurity
 				.csrf(AbstractHttpConfigurer::disable)
-				.authorizeHttpRequests(a -> a.anyRequest().authenticated())
+				.authorizeHttpRequests(a -> a
+						.requestMatchers("/auth/**").permitAll()
+						.anyRequest().authenticated())
 				.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authenticationProvider(authenticationProvider())
 				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)

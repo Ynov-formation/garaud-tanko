@@ -1,31 +1,36 @@
 package com.ynov.security.services.impl;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.ynov.security.services.JwtService;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.function.Function;
 
 @Service
 public class JwtServiceImpl implements JwtService {
+
+	private DecodedJWT decodedJWT;
 
 	@Value("${token.signing.key}")
 	private String jwtSigningKey;
 
 	@Override
 	public String extractUsername(String token) {
-		return extractClaim(token, Claims::getSubject);
+		decodedJWT = JWT.decode(token);
+		return decodedJWT.getSubject();
 	}
 
 	@Override
 	public String generateToken(UserDetails userDetails) {
-		return generateToken(new HashMap<>(), userDetails);
+		return JWT.create()
+				.withSubject(userDetails.getUsername())
+				.withIssuedAt(new Date(System.currentTimeMillis()))
+				.withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
+				.sign(Algorithm.HMAC256(jwtSigningKey));
 	}
 
 	@Override
@@ -39,25 +44,7 @@ public class JwtServiceImpl implements JwtService {
 	}
 
 	private Date extractExpiration(String token) {
-		return extractClaim(token, Claims::getExpiration);
-	}
-
-	private <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-		final Claims claims = extractAllClaims(token);
-		return claimsResolver.apply(claims);
-	}
-
-	private Claims extractAllClaims(String token) {
-		return Jwts.parser().setSigningKey(jwtSigningKey).parseClaimsJws(token).getBody();
-	}
-
-	private String generateToken(HashMap<String, Object> extraClaims, UserDetails userDetails) {
-		return Jwts.builder()
-				.setClaims(extraClaims)
-				.setSubject(userDetails.getUsername())
-				.setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 7))
-				.signWith(SignatureAlgorithm.HS256, jwtSigningKey)
-				.compact();
+		decodedJWT = JWT.decode(token);
+		return decodedJWT.getExpiresAt();
 	}
 }
