@@ -1,7 +1,6 @@
 package com.ynov.security.services.impl;
 
 import com.ynov.security.dao.UserRepository;
-import com.ynov.security.entities.Role;
 import com.ynov.security.entities.User;
 import com.ynov.security.request.LoginRequest;
 import com.ynov.security.request.SignUpRequest;
@@ -13,6 +12,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import static com.ynov.security.entities.Role.USER;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +31,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 				.withLastName(request.getLastName())
 				.withEmail(request.getEmail())
 				.withPassword(passwordEncoder.encode(request.getPassword()))
-				.withRole(Role.USER)
+				.withRole(USER)
 				.build();
 
 		userRepository.save(user);
