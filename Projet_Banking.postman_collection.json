@@ -399,6 +399,76 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Dominik\",\r\n    \"lastName\": \"Tanko\",\r\n    \"email\": \"dominik.tanko@email.com\",\r\n    \"password\": \"Mypwd123!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI_AUTH}}/signup",
+							"host": [
+								"{{URI_AUTH}}"
+							],
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkb21pbmlrLnRhbmtvQGVtYWlsLmNvbSIsImlhdCI6MTcwMTQ0MTI1NywiZXhwIjoxNzAxNDc3MjU3fQ.mkAt1SSH_RkSmUkxNKam1QG4m61ChHYymlJPzRamqFA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"dominik.tanko@email.com\",\r\n    \"password\": \"Mypwd123!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI_AUTH}}/login",
+							"host": [
+								"{{URI_AUTH}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
